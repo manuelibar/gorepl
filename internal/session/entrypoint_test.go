@@ -37,8 +37,8 @@ func TestTraverseEntrypoint_FindsLocalPackages(t *testing.T) {
 	entryContent := `package main
 
 import (
-	"github.com/mibar/gorepl/example/foo"
-	bar "github.com/mibar/gorepl/example/bar"
+	"github.com/manuelibar/gorepl/example/foo"
+	bar "github.com/manuelibar/gorepl/example/bar"
 )
 
 func main() {
@@ -72,8 +72,8 @@ func main() {
 	if err != nil {
 		t.Fatalf("TraverseEntrypoint: %v", err)
 	}
-	if modulePath != "github.com/mibar/gorepl" {
-		t.Errorf("modulePath = %q, want %q", modulePath, "github.com/mibar/gorepl")
+	if modulePath != "github.com/manuelibar/gorepl" {
+		t.Errorf("modulePath = %q, want %q", modulePath, "github.com/manuelibar/gorepl")
 	}
 	absModuleRoot, _ := filepath.Abs(moduleRoot)
 	if modDir != absModuleRoot {
@@ -100,8 +100,8 @@ func TestTraverseEntrypoint_AliasResolution(t *testing.T) {
 	entryContent := `package main
 
 import (
-	aliased "github.com/mibar/gorepl/example/foo"
-	"github.com/mibar/gorepl/example/bar"
+	aliased "github.com/manuelibar/gorepl/example/foo"
+	"github.com/manuelibar/gorepl/example/bar"
 )
 
 func main() { _ = aliased.New(); _ = bar.New() }
@@ -118,11 +118,11 @@ func main() { _ = aliased.New(); _ = bar.New() }
 	}
 
 	// foo is imported with alias "aliased" — should take priority over declared pkg name.
-	if v, ok := localPkgMap["aliased"]; !ok || v != "github.com/mibar/gorepl/example/foo" {
+	if v, ok := localPkgMap["aliased"]; !ok || v != "github.com/manuelibar/gorepl/example/foo" {
 		t.Errorf("expected aliased→example/foo in map, got %v", localPkgMap)
 	}
 	// bar has no alias — should use declared package name "bar".
-	if v, ok := localPkgMap["bar"]; !ok || v != "github.com/mibar/gorepl/example/bar" {
+	if v, ok := localPkgMap["bar"]; !ok || v != "github.com/manuelibar/gorepl/example/bar" {
 		t.Errorf("expected bar→example/bar in map, got %v", localPkgMap)
 	}
 	// "foo" short name should NOT appear (the alias overrides it).

@@ -5,7 +5,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/mibar/gorepl/internal/session"
+	"github.com/manuelibar/gorepl/internal/session"
 )
 
 // stubRunner satisfies the fields needed by REPL without actually running Go code.

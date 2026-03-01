@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/mibar/gorepl/internal/repl"
-	"github.com/mibar/gorepl/internal/runner"
-	"github.com/mibar/gorepl/internal/session"
+	"github.com/manuelibar/gorepl/internal/repl"
+	"github.com/manuelibar/gorepl/internal/runner"
+	"github.com/manuelibar/gorepl/internal/session"
 )
 
 func main() {

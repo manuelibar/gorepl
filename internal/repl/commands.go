@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mibar/gorepl/internal/session"
+	"github.com/manuelibar/gorepl/internal/session"
 )
 
 func (r *REPL) handleCommand(ctx context.Context, line string, w io.Writer, errW io.Writer) (quit bool) {

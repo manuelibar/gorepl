@@ -5,7 +5,7 @@ import (
 )
 
 func TestParseGoDocOutput_FuncAndType(t *testing.T) {
-	output := `package foo // import "github.com/mibar/gorepl/example/foo"
+	output := `package foo // import "github.com/manuelibar/gorepl/example/foo"
 
 func New() *Foo
 type Foo struct{}
@@ -167,7 +167,7 @@ var debugMode bool
 }
 
 func TestListExports_ThisModule(t *testing.T) {
-	syms, err := ListExports("github.com/mibar/gorepl/example/foo", "../..")
+	syms, err := ListExports("github.com/manuelibar/gorepl/example/foo", "../..")
 	if err != nil {
 		t.Fatalf("ListExports: %v", err)
 	}
