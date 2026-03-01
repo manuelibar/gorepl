@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cmd="${1:-help}"
+shift 2>/dev/null || true
+
+case "$cmd" in
+  build)
+    go build ./...
+    ;;
+  test)
+    go test ./... -v -count=1
+    ;;
+  vet)
+    go vet ./...
+    ;;
+  lint)
+    go vet ./...
+    echo "lint passed"
+    ;;
+  clean)
+    go clean ./...
+    ;;
+  bench)
+    go test ./... -bench=. -benchmem -count=3
+    ;;
+  run)
+    go run ./cmd/gorepl/ "$@"
+    ;;
+  all)
+    go build ./...
+    go vet ./...
+    go test ./... -v -count=1
+    ;;
+  help|*)
+    echo "usage: ./run <command> [args]"
+    echo ""
+    echo "commands:"
+    echo "  build    go build ./..."
+    echo "  test     go test ./... -v -count=1"
+    echo "  vet      go vet ./..."
+    echo "  lint     vet + lint passed"
+    echo "  clean    go clean ./..."
+    echo "  bench    benchmarks with -benchmem"
+    echo "  run      go run ./cmd/gorepl/ [args...]"
+    echo "  all      build + vet + test"
+    echo ""
+    echo "run usage:"
+    echo "  ./run run [--entrypoint <path>] [--session <name>] [--session-dir <dir>]"
+    ;;
+esac
